@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, library_private_types_in_public_api, use_key_in_widget_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:chat_app/constants.dart';
 
 class WelcomeScreen extends StatefulWidget {
   @override
