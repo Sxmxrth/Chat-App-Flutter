@@ -8,10 +8,10 @@ import 'package:chat_app/screens/chat_screen.dart';
 import 'package:flutter/services.dart';
 
 final Map<String, WidgetBuilder> routes = {
-  '/loginscreen': (context) => LoginScreen(),
-  '/registrationscreen': (context) => RegistrationScreen(),
-  '/chatscreen': (context) => ChatScreen(),
-  '/welcomescreen': (context) => WelcomeScreen(),
+  LoginScreen.id: (context) => LoginScreen(),
+  RegistrationScreen.id: (context) => RegistrationScreen(),
+  ChatScreen.id: (context) => ChatScreen(),
+  WelcomeScreen.id: (context) => WelcomeScreen(),
 };
 
 void main() => runApp(FlashChat());
@@ -28,7 +28,7 @@ class FlashChat extends StatelessWidget {
           bodyLarge: TextStyle(color: Colors.black54),
         ),
       ),
-      initialRoute: '/welcomescreen',
+      initialRoute: WelcomeScreen.id,
       routes: routes,
     );
   }
