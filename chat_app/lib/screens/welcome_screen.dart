@@ -1,6 +1,10 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last, library_private_types_in_public_api, use_key_in_widget_constructors, sized_box_for_whitespace
 
+import 'package:chat_app/screens/login_screen.dart';
+import 'package:chat_app/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import '../components/rounded_button.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = "/welcomescreen";
@@ -25,12 +29,24 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 SizedBox(
                   width: 20,
                 ),
-                Container(
-                  child: Image.asset('images/logo.png'),
-                  height: 60,
+                Hero(
+                  tag: 'logo',
+                  child: Container(
+                    child: Image.asset('images/logo.png'),
+                    height: 60,
+                  ),
                 ),
-                Text(
-                  'Flash Chat',
+                DefaultTextStyle(
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        "Flash Chat",
+                        cursor: '|',
+                        speed: Duration(milliseconds: 130),
+                        curve: Curves.bounceIn,
+                      ),
+                    ],
+                  ),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 45.0,
@@ -42,43 +58,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/loginscreen");
-                    //Go to login screen.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            roundedButton(
+              context,
+              Colors.lightBlueAccent,
+              "Log In",
+              () => {Navigator.pushNamed(context, LoginScreen.id)},
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/registrationscreen");
-                    //Go to registration screen.
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'Register',
-                  ),
-                ),
-              ),
+            roundedButton(
+              context,
+              Colors.blueAccent,
+              "Registration",
+              () => {Navigator.pushNamed(context, RegistrationScreen.id)},
             ),
           ],
         ),
