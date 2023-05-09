@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, unused_import
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/screens/welcome_screen.dart';
 import 'package:chat_app/screens/login_screen.dart';
@@ -14,7 +16,11 @@ final Map<String, WidgetBuilder> routes = {
   WelcomeScreen.id: (context) => WelcomeScreen(),
 };
 
-void main() => runApp(FlashChat());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(FlashChat());
+}
 
 class FlashChat extends StatelessWidget {
   @override
