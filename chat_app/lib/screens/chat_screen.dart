@@ -25,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        print(loggedInUser.email); 
+        print(loggedInUser.email);
       }
     } catch (e) {
       print(e);
@@ -36,6 +36,9 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 60,
+        automaticallyImplyLeading: false,
+        elevation: 0,
         leading: null,
         actions: <Widget>[
           IconButton(
@@ -44,37 +47,48 @@ class _ChatScreenState extends State<ChatScreen> {
                 //Implement logout functionality
               }),
         ],
-        title: Text('⚡️Chat'),
-        backgroundColor: Colors.lightBlueAccent,
+        title: Text(
+          '⚡️Chat',
+          style: TextStyle(fontSize: 25),
+        ),
+        backgroundColor: Colors.blue[400],
       ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              decoration: kMessageContainerDecoration,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: TextField(
-                      onChanged: (value) {
-                        //Do something with the user input.
+            Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Container(
+                // decoration: kMessageContainerDecoration,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      width: 270,
+                      child: TextField(
+                        style: TextStyle(color: Colors.black),
+                        onChanged: (value) {
+                          //Do something with the user input.
+                        },
+                        decoration: kMessageTextFieldDecoration,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        //Implement send functionality.
                       },
-                      decoration: kMessageTextFieldDecoration,
+                      child: Text(
+                        'Send',
+                        style: kSendButtonTextStyle,
+                      ),
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      //Implement send functionality.
-                    },
-                    child: Text(
-                      'Send',
-                      style: kSendButtonTextStyle,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ],

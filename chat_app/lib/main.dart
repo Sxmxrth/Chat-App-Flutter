@@ -29,7 +29,7 @@ class FlashChat extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData.light().copyWith(
         textTheme: TextTheme(
           bodyLarge: TextStyle(color: Colors.black54),
         ),
